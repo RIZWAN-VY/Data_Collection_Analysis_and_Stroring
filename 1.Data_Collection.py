@@ -35,3 +35,46 @@ for i in range(1, pages + 1):
     # Parse content
     content = response.content
     soup = BeautifulSoup(content, 'html.parser')
+
+        # DATA COLLECTION :
+#----------------------------------------------------------
+    # Collecting all customer names
+    for item in soup.find_all("span", itemprop= "name"):
+        names.append(item.get_text())     
+
+    # Collecting all customer location
+    for item in soup.find_all("h3", class_="text_sub_header userStatusWrapper"):
+        location_text = item.get_text()
+        start_index = location_text.find("(") + 1
+        end_index = location_text.find(")")
+        location = location_text[start_index:end_index]
+        locations.append(location.strip())         
+
+    # Collecting all date published
+    for item in soup.find_all("time", itemprop ="datePublished"):
+        date_review_posted.append(item.get_text())       
+
+    # Collecting all rating
+    for index, item in enumerate(soup.find_all("span", itemprop="ratingValue")):
+        if index != 0:  # Skip the first rating because first rating in website is overall rating
+            rating.append(item.get_text().strip())         
+
+    # Collecting all review title
+    for item in soup.find_all("h2", class_="text_header"):
+        review_title.append(item.get_text())       
+
+    # Collecting all detailed review 
+    for item in soup.find_all("div", class_ ="text_content"):
+        detailed_review.append(item.get_text())
+        
+    # Collecting all recommended
+    for item in soup.find_all("td", class_=["review-value rating-yes","review-value rating-no"]):
+        recommended.append(item.get_text())
+        
+print("Names:",len(names))
+print("Locations:", len(locations))
+print("Date Review Posted:", len(date_review_posted))
+print("Ratings:", len(rating))
+print("review_title:", len(review_title))
+print("Detailed review",len(detailed_review))
+print("Recommended:", len(recommended))
