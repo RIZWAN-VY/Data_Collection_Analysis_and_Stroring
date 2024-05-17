@@ -94,3 +94,21 @@ print("review_title:", len(review_title))
 print("Detailed review",len(detailed_review))
 print("Recommended:", len(recommended))
 '''
+#------------------------------------------------------------------------------------------------
+
+# Creating a Dataframe using pandas for storing the collected data
+
+df = pd.DataFrame()
+
+df["Customer_Names"] = names
+df["Customer_Locations"] = locations
+df["Date_Review_Posted"] = date_review_posted
+df["Ratings"] = rating
+df["Recommended"] = recommended 
+df["Review"] = review_title
+df["Detailed_Review"] = detailed_review
+
+print(df)
+
+# Saving the Scrapped data as a CSV file for Analysis
+df.to_csv("British_Airways_Customer_reviews.csv")
