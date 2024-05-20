@@ -67,6 +67,8 @@ data['Review_Sentiment'] = Sentiments_category
 # print(data)
 # print(data.dtypes)
 
+# Saving the Scrapped data as a CSV file for Analysis
+data.to_csv("Cleaned_British_Airways_Customer_reviews.csv")
 
 #   Storing Data to Mysql 
 #====================================================================================================================================
