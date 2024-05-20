@@ -79,3 +79,19 @@ db_connection = mysql.connector.connect(
 )
 
 mycursor = db_connection.cursor()
+
+# mycursor.execute("CREATE DATABASE british_airways")     # Creating a Database
+
+# creating a table
+create_table = """CREATE TABLE customer_reviews (
+    Customer_Names VARCHAR(255),
+    Customer_Locations VARCHAR(255),
+    Date_Review_Posted VARCHAR(50),
+    Ratings INT,
+    Recommended VARCHAR(3),
+    Review TEXT,
+    Detailed_Review TEXT,
+    Review_Sentiment VARCHAR(50)
+)"""
+
+mycursor.execute(create_table)
