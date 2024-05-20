@@ -5,6 +5,7 @@
 # Libraries
 import pandas as pd
 from textblob import TextBlob
+import mysql.connector
 
 # Loading the Data
 data = pd.read_csv('C:/Users/rizwa/Rizwan/Projects/Data_Collection_and_Storage/2.British_Airways_Customer_reviews.csv')
@@ -65,3 +66,16 @@ data['Review_Sentiment'] = Sentiments_category
 
 # print(data)
 # print(data.dtypes)
+
+
+#   Storing Data to Mysql 
+#====================================================================================================================================
+
+db_connection = mysql.connector.connect(
+                host="localhost",
+                user="root",
+                password="root",
+                database="british_airways"
+)
+
+mycursor = db_connection.cursor()
