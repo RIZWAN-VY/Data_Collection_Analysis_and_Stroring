@@ -95,3 +95,29 @@ create_table = """CREATE TABLE customer_reviews (
 )"""
 
 mycursor.execute(create_table)
+
+# Define insert query
+insert_query = """
+INSERT INTO customer_reviews (
+    Customer_Names, Customer_Locations, Date_Review_Posted, Ratings, Recommended, Review, Detailed_Review, Review_Sentiment
+) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+"""
+# Insert data into the table
+for index, row in data.iterrows():
+    mycursor.execute(insert_query, (
+        row['Customer_Names'], 
+        row['Customer_Locations'], 
+        row['Date_Review_Posted'], 
+        row['Ratings'], 
+        row['Recommended'], 
+        row['Review'], 
+        row['Detailed_Review'], 
+        row['Review_Sentiment']
+    ))
+
+# Commit the transaction
+db_connection.commit()
+
+# Close the cursor and connection
+mycursor.close()
+db_connection.close()
