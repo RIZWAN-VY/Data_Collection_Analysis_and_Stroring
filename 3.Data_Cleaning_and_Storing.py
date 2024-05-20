@@ -38,11 +38,6 @@ data['Detailed_Review'] = data['Detailed_Review'].str.strip()   # Remove leading
 data['Review'] = data['Review'].str.strip() 
 
 
-# Converting data type of  Date_Review_Posted (Object) to datetime
-#====================================================================================================================================
-data['Date_Review_Posted'] = pd.to_datetime(data['Date_Review_Posted'], errors='coerce')
-
-
 # Adding a column for Sentiment of Review [Positive, Neutral, Negative]
 #====================================================================================================================================
 reviews = data['Review'] + ' ' + data['Detailed_Review']
@@ -68,4 +63,5 @@ for score in Sentiments:
 
 data['Review_Sentiment'] = Sentiments_category
 
-#====================================================================================================================================
+# print(data)
+# print(data.dtypes)
